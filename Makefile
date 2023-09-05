@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/05 16:56:33 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/05 17:58:57 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CC			=	cc
 # FLAGS		=	-O3 -Wall -Wextra -Werror
 # FLAGS		=	-Wall -Wextra -Werror
 FLAGS		=	
-LIBFTPRINTF	= -L ./libraries/ -lftprintf
+LIBFTPRINTF	= -L ./libraries/ -lft
 
 SRC			=	${addprefix mandatory/, main.c}\
 				${addprefix mandatory/, ft_check_param.c}
@@ -36,15 +36,15 @@ HEADER		=	-I ./include/
 # RULES MANDATORY ************************************************************ #
 all:		${NAME}
 
-${NAME}:	ftprintf ${OBJ}
+${NAME}:	libft ${OBJ}
 	@printf "${BLUE}All objects created!${RESET}\n"
 	${CC} ${FLAGS} -o ${NAME} ${OBJ} ${LIBFTPRINTF} ${HEADER}
 #	cc ${FLAGS} -Iinclude ${OBJ} -L./libraries/ -lftprintf -o $@
 	@printf "${GREEN}${NAME} created!${RESET}\n"
 	@exit 0
 
-ftprintf:
-	@make -C ./libraries --no-print-directory
+libft:
+	@make -C ./libraries/libft --no-print-directory
 
 %.o: %.c
 	@printf "${YELLOW}Compiling: ${CYAN}${notdir $<}${RESET}\n"
@@ -54,7 +54,7 @@ ftprintf:
 clean:
 	rm -fr ${OBJ}
 	rm -fr ${OBJ_BONUS}
-	rm -fr libraries/*.o
+	rm -fr *.o
 	@printf "${MAGENTA}All objects removed!${RESET}\n"
 
 fclean:		clean

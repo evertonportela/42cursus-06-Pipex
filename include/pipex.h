@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:26:32 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/05 16:18:05 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:59:35 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <errno.h>
 
 /* Funtions Projects 42 ***************************************************** */
-# include "../libraries/ft_printf.h"
+# include "../libraries/libft/libft.h"
 
 /* Funtions Pipex *********************************************************** */
 int	ft_check_param(int argc, char *argv[], char *envp[]);
