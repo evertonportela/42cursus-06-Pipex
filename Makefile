@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/05 17:58:57 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/05 18:08:13 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,43 +25,41 @@ CC			=	cc
 # FLAGS		=	-O3 -Wall -Wextra -Werror
 # FLAGS		=	-Wall -Wextra -Werror
 FLAGS		=	
-LIBFTPRINTF	= -L ./libraries/ -lft
+LIBFTPRINTF	= -L ./libraries/libft -lft
 
 SRC			=	${addprefix mandatory/, main.c}\
 				${addprefix mandatory/, ft_check_param.c}
 
-OBJ			= ${SRC:.c=.o}
+OBJ			=	${SRC:.c=.o}
 HEADER		=	-I ./include/
 
 # RULES MANDATORY ************************************************************ #
 all:		${NAME}
 
 ${NAME}:	libft ${OBJ}
-	@printf "${BLUE}All objects created!${RESET}\n"
-	${CC} ${FLAGS} -o ${NAME} ${OBJ} ${LIBFTPRINTF} ${HEADER}
-#	cc ${FLAGS} -Iinclude ${OBJ} -L./libraries/ -lftprintf -o $@
-	@printf "${GREEN}${NAME} created!${RESET}\n"
-	@exit 0
+			@printf "${BLUE}All objects created!${RESET}\n"
+			${CC} ${FLAGS} -o ${NAME} ${OBJ} ${LIBFTPRINTF} ${HEADER}
+			@printf "${GREEN}${NAME} created!${RESET}\n"
+			@exit 0
 
 libft:
-	@make -C ./libraries/libft --no-print-directory
+			@make -C ./libraries/libft --no-print-directory
+			@make clean
 
 %.o: %.c
-	@printf "${YELLOW}Compiling: ${CYAN}${notdir $<}${RESET}\n"
-	cc ${FLAGS} ${HEADER} -c $< -o $@
+			@printf "${YELLOW}Compiling: ${CYAN}${notdir $<}${RESET}\n"
+			cc ${FLAGS} ${HEADER} -c $< -o $@
 
 # CLEANING RULES ************************************************************* #
 clean:
-	rm -fr ${OBJ}
-	rm -fr ${OBJ_BONUS}
-	rm -fr *.o
-	@printf "${MAGENTA}All objects removed!${RESET}\n"
+			rm -fr ${OBJ}
+			rm -fr ${OBJ_BONUS}
+			@printf "${MAGENTA}All objects removed!${RESET}\n"
 
 fclean:		clean
-	rm -fr ${NAME}
-	rm -fr ${NAME_BONUS}
-	rm -fr libraries/*.a
-	@printf "${RED}${NAME} removed!${RESET}\n"
+			rm -fr ${NAME}
+			rm -fr ${NAME_BONUS}
+			@printf "${RED}${NAME} removed!${RESET}\n"
 
 re:			fclean ${NAME}
 
