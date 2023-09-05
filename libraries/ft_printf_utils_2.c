@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_param.c                                   :+:      :+:    :+:   */
+/*   ft_printf_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 12:56:33 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/05 15:18:59 by evportel         ###   ########.fr       */
+/*   Created: 2023/06/16 17:42:16 by evportel          #+#    #+#             */
+/*   Updated: 2023/06/27 09:47:43 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "ft_printf.h"
 
-int	ft_check_param(int argc, char *argv[], char *envp[])
+void	ft_put_hex_lower(unsigned int nbr)
 {
-	errno = EINVAL;
-	if (argc == 5)
-		ft_printf("Ok bora trabalhar -> Birl\n");
-	else
-		perror("Invalid number of input parameters");
-	return (SUCCESS_PIPEX);
+	if (nbr > 15)
+		ft_put_hex_lower(nbr / 16);
+	write(1, &"0123456789abcdef"[nbr % 16], sizeof(char));
+	add_one_more(1);
+}
+
+void	ft_put_hex_upper(unsigned int nbr)
+{
+	if (nbr > 15)
+		ft_put_hex_upper(nbr / 16);
+	write(1, &"0123456789ABCDEF"[nbr % 16], sizeof(char));
+	add_one_more(1);
 }
