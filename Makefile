@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/05 18:08:13 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/05 18:22:39 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,27 +38,28 @@ all:		${NAME}
 
 ${NAME}:	libft ${OBJ}
 			@printf "${BLUE}All objects created!${RESET}\n"
-			${CC} ${FLAGS} -o ${NAME} ${OBJ} ${LIBFTPRINTF} ${HEADER}
+			@${CC} ${FLAGS} -o ${NAME} ${OBJ} ${LIBFTPRINTF} ${HEADER}
 			@printf "${GREEN}${NAME} created!${RESET}\n"
+			@make clean
 			@exit 0
 
 libft:
 			@make -C ./libraries/libft --no-print-directory
-			@make clean
+			@make clean -C ./libraries/libft --no-print-directory
 
 %.o: %.c
 			@printf "${YELLOW}Compiling: ${CYAN}${notdir $<}${RESET}\n"
-			cc ${FLAGS} ${HEADER} -c $< -o $@
+			@cc ${FLAGS} ${HEADER} -c $< -o $@
 
 # CLEANING RULES ************************************************************* #
 clean:
-			rm -fr ${OBJ}
-			rm -fr ${OBJ_BONUS}
+			@rm -fr ${OBJ}
+			@rm -fr ${OBJ_BONUS}
 			@printf "${MAGENTA}All objects removed!${RESET}\n"
 
 fclean:		clean
-			rm -fr ${NAME}
-			rm -fr ${NAME_BONUS}
+			@rm -fr ${NAME}
+			@rm -fr ${NAME_BONUS}
 			@printf "${RED}${NAME} removed!${RESET}\n"
 
 re:			fclean ${NAME}

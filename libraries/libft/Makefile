@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 10:41:40 by evportel          #+#    #+#              #
-#    Updated: 2023/09/05 17:54:54 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/05 18:16:01 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,16 +38,16 @@ RM				= rm -f
 all:			$(NAME)
 
 $(NAME):		$(OBJECTS)
-				ar -rcs $(NAME) $(OBJECTS)
+				@ar -rcs $(NAME) $(OBJECTS)
 
 %.o:			%.c
-				$(CC) $(FLAGS) -I ./ -c $< -o $@
+				@$(CC) $(FLAGS) -I ./ -c $< -o $@
 
 clean:
-	$(RM) $(OBJECTS)
+	@$(RM) $(OBJECTS)
 
 fclean:			clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
