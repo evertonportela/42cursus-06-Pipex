@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:26:32 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/04 17:08:10 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/05 11:52:08 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include "../libraries/ft_printf.h"
 
 #endif

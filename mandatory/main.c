@@ -6,16 +6,23 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:26:10 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/04 17:25:32 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/05 12:23:35 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/pipex.h"
+#include "../include/pipex.h"
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	char	*args[3] = {"ls", "-la", NULL};
+	if (argc == 5)
+	{
+		ft_printf("Hello PrintF");
+	}
+	else
+		ft_printf("Hello PrintF");
 
-	execve("/usr/bin/ls", args, envp);
-	return (SUCCESS_PIPEX);
+	// char	*args[3] = {"ls", "-la", NULL};
+
+	// execve("/usr/bin/ls", args, envp);
+	// return (SUCCESS_PIPEX);
 }
