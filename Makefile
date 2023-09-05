@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/05 12:23:04 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/05 13:13:20 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ CC		=	cc
 # FLAGS	=	-Wall -Wextra -Werror
 FLAGS	=	
 
-SRC		= ${addprefix mandatory/, main.c}
+SRC		=	${addprefix mandatory/, main.c}\
+			${addprefix mandatory/, ft_check_param.c}
 
 OBJ		= ${SRC:.c=.o}
 HEADER	=	include/pipex.h
@@ -56,5 +57,14 @@ fclean:		clean
 	@printf "${RED}${NAME} removed!${RESET}\n"
 
 re:			fclean ${NAME}
+
+# CLEANING RULES ************************************************************* #
+test_suite:		re
+			clear
+			@printf "${CYAN}Recompiling ... OK${RESET}\n"
+			@printf "${CYAN}Test File -> Expected OK${RESET}\n"
+			./pipex infile "ls -l" "wc -l" outfile
+			@printf "${RED}Test File -> Expected ERROR${RESET}\n"
+			./pipex args1
 
 .PHONY: all bonus clean fclean re
