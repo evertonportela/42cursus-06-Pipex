@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/05 18:22:39 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/05 21:05:45 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,12 @@ RESET	=	\033[0m
 NAME		=	pipex
 CC			=	cc
 # FLAGS		=	-O3 -Wall -Wextra -Werror
-# FLAGS		=	-Wall -Wextra -Werror
+FLAGS		=	-Wall -Wextra -Werror
 FLAGS		=	
 LIBFTPRINTF	= -L ./libraries/libft -lft
 
-SRC			=	${addprefix mandatory/, main.c}\
-				${addprefix mandatory/, ft_check_param.c}
+SRC			=	${addprefix mandatory/, main.c}
+#				${addprefix mandatory/, ft_check_param.c}
 
 OBJ			=	${SRC:.c=.o}
 HEADER		=	-I ./include/
@@ -65,7 +65,7 @@ fclean:		clean
 re:			fclean ${NAME}
 
 # CLEANING RULES ************************************************************* #
-test_suite:		re
+test:		re
 			clear
 			@printf "${CYAN}Recompiling ... OK${RESET}\n"
 			@printf "${CYAN}Test File -> Expected OK${RESET}\n"

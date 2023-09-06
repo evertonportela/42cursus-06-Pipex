@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:26:32 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/05 17:59:35 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/05 21:08:51 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <errno.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 /* Funtions Projects 42 ***************************************************** */
 # include "../libraries/libft/libft.h"
