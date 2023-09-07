@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/05 21:05:45 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/07 11:14:10 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,49 +28,52 @@ FLAGS		=
 LIBFTPRINTF	= -L ./libraries/libft -lft
 
 SRC			=	${addprefix mandatory/, main.c}
-#				${addprefix mandatory/, ft_check_param.c}
 
 OBJ			=	${SRC:.c=.o}
 HEADER		=	-I ./include/
+
+# VARIABLES TEST ************************************************************* #
+INPUT_FILE	=	input
+COMMAND1	=	"sort"
+COMMAND2	=	"grep ea"
+OUTPUT_FILE	=	output
+
+
 
 # RULES MANDATORY ************************************************************ #
 all:		${NAME}
 
 ${NAME}:	libft ${OBJ}
 			@printf "${BLUE}All objects created!${RESET}\n"
-			@${CC} ${FLAGS} -o ${NAME} ${OBJ} ${LIBFTPRINTF} ${HEADER}
+			${CC} ${FLAGS} -o ${NAME} ${OBJ} ${LIBFTPRINTF} ${HEADER}
 			@printf "${GREEN}${NAME} created!${RESET}\n"
-			@make clean
-			@exit 0
+			make clean
 
 libft:
-			@make -C ./libraries/libft --no-print-directory
-			@make clean -C ./libraries/libft --no-print-directory
+			make -C ./libraries/libft --no-print-directory
+			make clean -C ./libraries/libft --no-print-directory
 
 %.o: %.c
 			@printf "${YELLOW}Compiling: ${CYAN}${notdir $<}${RESET}\n"
-			@cc ${FLAGS} ${HEADER} -c $< -o $@
+			cc ${FLAGS} ${HEADER} -c $< -o $@
 
 # CLEANING RULES ************************************************************* #
 clean:
-			@rm -fr ${OBJ}
-			@rm -fr ${OBJ_BONUS}
+			rm -fr ${OBJ}
+#			rm -fr ${OBJ_BONUS}
 			@printf "${MAGENTA}All objects removed!${RESET}\n"
 
 fclean:		clean
-			@rm -fr ${NAME}
-			@rm -fr ${NAME_BONUS}
+			rm -fr ${NAME}
+#			rm -fr ${NAME_BONUS}
 			@printf "${RED}${NAME} removed!${RESET}\n"
 
 re:			fclean ${NAME}
 
-# CLEANING RULES ************************************************************* #
-test:		re
+# TEST RULES ***************************************************************** #
+test1:		
 			clear
 			@printf "${CYAN}Recompiling ... OK${RESET}\n"
-			@printf "${CYAN}Test File -> Expected OK${RESET}\n"
-			./pipex infile "ls -l" "wc -l" outfile
-			@printf "${RED}Test File -> Expected ERROR${RESET}\n"
-			./pipex args1
+			./${NAME} ${INPUT_FILE} ${COMMAND1} ${COMMAND2} ${OUTPUT_FILE}
 
 .PHONY: all bonus clean fclean re
