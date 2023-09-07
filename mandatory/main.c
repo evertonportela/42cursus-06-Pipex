@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:26:10 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/07 11:14:48 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:20:29 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		errno = EINVAL;
 		ft_printf("use: input_file \"cmd_1\" \"cmd_2\" output_file\n");
-		perror("pipex");
+		perror("evportel");
 		exit (STDERR_FILENO);
 	}
 	if (access(argv[1], F_OK) != 0)
 	{
-		ft_printf("Access File Error\n");
-		perror("pipex");
+		ft_printf("input file access error\n");
+		perror("evportel");
 		exit (STDERR_FILENO);
 	}
 	ft_printf("Args OK - File OK\n");

@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/07 11:14:10 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/07 11:18:59 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,14 +31,6 @@ SRC			=	${addprefix mandatory/, main.c}
 
 OBJ			=	${SRC:.c=.o}
 HEADER		=	-I ./include/
-
-# VARIABLES TEST ************************************************************* #
-INPUT_FILE	=	input
-COMMAND1	=	"sort"
-COMMAND2	=	"grep ea"
-OUTPUT_FILE	=	output
-
-
 
 # RULES MANDATORY ************************************************************ #
 all:		${NAME}
@@ -73,7 +65,12 @@ re:			fclean ${NAME}
 # TEST RULES ***************************************************************** #
 test1:		
 			clear
-			@printf "${CYAN}Recompiling ... OK${RESET}\n"
-			./${NAME} ${INPUT_FILE} ${COMMAND1} ${COMMAND2} ${OUTPUT_FILE}
+			@printf "${CYAN}Test1 ... OK${RESET}\n"
+			./pipex input "sort" "grep ea" output
+
+test2:		
+			clear
+			@printf "\n${CYAN}Test2 ... OK${RESET}\n"
+			./pipex input.txt "sort" "grep ea" output
 
 .PHONY: all bonus clean fclean re
