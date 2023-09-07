@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:26:10 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/05 22:14:26 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/06 22:08:46 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_check_param(int argc, char *argv[], char *envp[])
 	errno = EINVAL;
 	if (argc == 5)
 	{
-		fd_input = open(argv[1], );
+		//fd_input = open(argv[1], );
 		return (SUCCESS_PIPEX);
 	}
 	else
@@ -28,6 +28,10 @@ int	ft_check_param(int argc, char *argv[], char *envp[])
 
 int	main(int argc, char *argv[], char *envp[])
 {
+	int	fd_pipe[2];
+
+	pipe(fd_pipe);
+	ft_printf("%d", fd_pipe[SUCCESS_PIPEX]);
 	if (ft_check_param(argc, argv, envp) == ERROR_PIPEX)
 		return (ERROR_PIPEX);
 	return (SUCCESS_PIPEX);

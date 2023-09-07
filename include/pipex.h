@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:26:32 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/05 21:08:51 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/06 21:55:21 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 # define SUCCESS_PIPEX 0
 # define ERROR_PIPEX 1
 
-# include <unistd.h>
+# include <errno.h>
+# include <fcntl.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include <errno.h>
 # include <sys/types.h>
 # include <sys/stat.h>
-# include <fcntl.h>
+# include <unistd.h>
 
-/* Funtions Projects 42 ***************************************************** */
+/* Include Projects 42 ***************************************************** */
 # include "../libraries/libft/libft.h"
 
 /* Funtions Pipex *********************************************************** */
