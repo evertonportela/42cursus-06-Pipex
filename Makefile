@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/07 11:18:59 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/08 15:45:05 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,10 @@ RESET	=	\033[0m
 # FLAGS MANDATORY ************************************************************ #
 NAME		=	pipex
 CC			=	cc
-# FLAGS		=	-O3 -Wall -Wextra -Werror
-FLAGS		=	-Wall -Wextra -Werror
+FLAGS		=	-O3
+# FLAGS		=	-Wall -Wextra -Werror -O3
 FLAGS		=	
-LIBFTPRINTF	= -L ./libraries/libft -lft
+LIBFT		= -L ./libft -lft
 
 SRC			=	${addprefix mandatory/, main.c}
 
@@ -37,13 +37,13 @@ all:		${NAME}
 
 ${NAME}:	libft ${OBJ}
 			@printf "${BLUE}All objects created!${RESET}\n"
-			${CC} ${FLAGS} -o ${NAME} ${OBJ} ${LIBFTPRINTF} ${HEADER}
+			${CC} ${FLAGS} -o ${NAME} ${OBJ} ${LIBFT} ${HEADER}
 			@printf "${GREEN}${NAME} created!${RESET}\n"
 			make clean
 
 libft:
-			make -C ./libraries/libft --no-print-directory
-			make clean -C ./libraries/libft --no-print-directory
+			make -C ./libft --no-print-directory
+			make clean -C ./libft --no-print-directory
 
 %.o: %.c
 			@printf "${YELLOW}Compiling: ${CYAN}${notdir $<}${RESET}\n"
