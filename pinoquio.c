@@ -9,7 +9,7 @@
 #define READ_END 0
 #define WRITE_END 1
 
-int execute_cmd(char *cmd, int input_fd, int output_fd) {
+int execute_cmd(char *cmd, int input_fd, int output_fd, char **env) {
     pid_t pid;
     int status;
 
@@ -36,8 +36,7 @@ int execute_cmd(char *cmd, int input_fd, int output_fd) {
         }
 
         // Executar o comando
-        char *argv[] = {"/bin/sh", "-c", cmd, NULL};
-        execve("/bin/sh", argv, NULL);
+        execve("/bin/sh", (char *[]){"/bin/sh", "-c", cmd, NULL}, env);
         perror("execve");
         exit(EXIT_FAILURE);
     } else {  // Processo pai
@@ -55,7 +54,7 @@ int execute_cmd(char *cmd, int input_fd, int output_fd) {
     return pid;
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[], char **env) {
     if (argc != 5) {
         fprintf(stderr, "Uso: %s file1 cmd1 cmd2 file2\n", argv[0]);
         exit(EXIT_FAILURE);
@@ -72,8 +71,8 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    int pid1 = execute_cmd(cmd1, open(file1, O_RDONLY), pipefd[WRITE_END]);
-    int pid2 = execute_cmd(cmd2, pipefd[READ_END], open(file2, O_WRONLY | O_CREAT | O_TRUNC, 0644));
+    int pid1 = execute_cmd(cmd1, open(file1, O_RDONLY), pipefd[WRITE_END], env);
+    int pid2 = execute_cmd(cmd2, pipefd[READ_END], open(file2, O_WRONLY | O_CREAT | O_TRUNC, 0644), env);
 
     close(pipefd[READ_END]);
     close(pipefd[WRITE_END]);
