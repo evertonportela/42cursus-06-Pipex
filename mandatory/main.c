@@ -5,40 +5,40 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 16:26:10 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/07 11:20:29 by evportel         ###   ########.fr       */
+/*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
+/*   Updated: 2023/09/08 16:58:25 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-int	main(int argc, char *argv[], char *envp[])
+int	main(int argc, char **argv)
 {
-	int	fd_pipe[2];
+	char	*fileinput = argv[1];
+	char	*command1 = argv[2];
+	char	*command2 = argv[3];
+	char	*fileoutput = argv[4];
+	int		pipefd[2];
+	int		fd_input;
 
-	pipe(fd_pipe);
 	if (argc != 5)
 	{
-		errno = EINVAL;
-		ft_printf("use: input_file \"cmd_1\" \"cmd_2\" output_file\n");
-		perror("evportel");
-		exit (STDERR_FILENO);
+		ft_printf("Invalid argument: ");
+		ft_printf("Use %s input command1 command2 output", argv[0]);
+		exit(P_ERROR);
 	}
-	if (access(argv[1], F_OK) != 0)
+	if (access(fileinput, F_OK) != 0)
 	{
-		ft_printf("input file access error\n");
-		perror("evportel");
-		exit (STDERR_FILENO);
+		perror("pipex:");
+		exit(P_ERROR);
 	}
-	ft_printf("Args OK - File OK\n");
-	return (SUCCESS_PIPEX);
+	if (pipe(pipefd) == -1)
+	{
+		perror("pipex:");
+		exit(P_ERROR);
+	}
+	fd_input = open(fileinput, O_RDONLY);
+	if (fd_input == -1)
+		perror("Erro ao abrir arquivo");
+	return (P_SUCCESS);
 }
-
-/**
-
-char	*args[3] = {"ls", "-la", NULL};
-execve("/usr/bin/ls", args, envp);
-
-$> ./pipex infile "ls -l" "wc -l" outfile
-
-*/
