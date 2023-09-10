@@ -6,13 +6,13 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 21:23:20 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/09 22:09:27 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/09 22:14:57 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-static char	*ft_find_command_path(char *command, char **env)
+static char **ft_get_path_command(char **env)
 {
 	int		index;
 	// char	*env_path_start;
@@ -36,6 +36,11 @@ static char	*ft_find_command_path(char *command, char **env)
 		index++;
 	}
 	return (env_all_path);
+}
+
+static char	*ft_find_command_path(char *command, char **env)
+{
+	
 }
 
 void	ft_exec_command(char *command, char **env)

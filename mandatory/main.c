@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/09 21:20:35 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/09 22:16:07 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,8 @@ int	main(int argc, char **argv, char **env)
 	}
 	return (EXIT_SUCCESS);
 }
+
+/** nota para o everton do futuro 
+ * continuar o raciocinio a partir do ft_find_command_path()
+ * no arquivo ft_exec_command
+*/
