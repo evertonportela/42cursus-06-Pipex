@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 21:23:20 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/09 22:03:15 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/09 22:09:27 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static char	*ft_find_command_path(char *command, char **env)
 	int		index;
 	// char	*env_path_start;
 	char	**env_all_path;
+	char	**env_temp;
 
 	index = 0;
 	while (env[index] && ft_strncmp(env[index], "PATH=", 5))
@@ -29,8 +30,12 @@ static char	*ft_find_command_path(char *command, char **env)
 	index = 0;
 	while (env_all_path[index])
 	{
-		
+		env_temp = env_all_path[index];
+		env_all_path[index] = ft_strjoin(env_temp, "/");
+		free(env_temp);
+		index++;
 	}
+	return (env_all_path);
 }
 
 void	ft_exec_command(char *command, char **env)
