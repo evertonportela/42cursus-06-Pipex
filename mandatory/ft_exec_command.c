@@ -40,7 +40,10 @@ static char **ft_get_path_command(char **env)
 
 static char	*ft_find_command_path(char *command, char **env)
 {
-	
+	char **path_command;
+
+	path_command = ft_get_path_command(env);
+	return ();
 }
 
 void	ft_exec_command(char *command, char **env)
