@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/10 21:59:52 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/10 23:11:17 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,33 +30,19 @@ int	ft_open_file(char *file, int io_flag)
 {
 	int	file_descriptor;
 
-	// Abre o arquivo para entrada.
 	if (io_flag == FILE_INPUT)
 	{
-		// Verifica se o arquivo existe.
 		if (access(file, F_OK) == -1)
 			ft_pipex_error();
-		
-		// Abre o arquivo para leitura apenas.
 		file_descriptor = open(file, O_RDONLY);
-		
-		// Verifica se a abertura do arquivo falhou.
 		if (file_descriptor < 0)
 			ft_pipex_error();
 	}
-	
-	// Abre o arquivo para saída.
 	else
 	{
-		// Abre o arquivo para leitura e gravação,
-		// cria se não existir e define permissões.
 		file_descriptor = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
-		
-		// Verifica se a abertura do arquivo falhou.
 		if (file_descriptor < 0)
 			ft_pipex_error();
 	}
-
-	// Retorna o descritor de arquivo após a abertura bem-sucedida.
 	return (file_descriptor);
 }
