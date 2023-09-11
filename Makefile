@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/10 20:59:39 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/10 22:13:08 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,5 +78,10 @@ test2:
 			clear
 			@printf "\n${CYAN}Test2 ... OK${RESET}\n"
 			./pipex input.txt "sort" "grep ea" output
+
+test3:		
+			clear
+			@printf "\n${CYAN}Test2 ... OK${RESET}\n"
+			./pipex input "sort" output
 
 .PHONY: all bonus clean fclean re
