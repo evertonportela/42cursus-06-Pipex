@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 20:24:57 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/10 20:50:33 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/10 21:06:26 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ void	ft_pipex(char *command, char **env)
 		ft_pipex_error();
 	else if (pid == 0)
 	{
-		close(fd_pipe[0]);
-		dup2(fd_pipe[1], STDOUT_FILENO);
-		close(fd_pipe[1]);
+		close(fd_pipe[STDIN_FILENO]);
+		dup2(fd_pipe[STDOUT_FILENO], STDOUT_FILENO);
+		close(fd_pipe[STDOUT_FILENO]);
 		ft_exec_command(command, env);
 		exit(EXIT_FAILURE);
 	}
 	else
 	{
 		waitpid(pid, NULL, WNOHANG);
-		dup2(fd_pipe[0], STDIN_FILENO);
-		close(fd_pipe[1]);
-		close(fd_pipe[0]);
+		dup2(fd_pipe[STDIN_FILENO], STDIN_FILENO);
+		close(fd_pipe[STDOUT_FILENO]);
+		close(fd_pipe[STDIN_FILENO]);
 	}
 }
