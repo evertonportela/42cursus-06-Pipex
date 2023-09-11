@@ -50,3 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+
+# MacOS Files
+*.DStore
+
+# Compilation Files C
+*.out
