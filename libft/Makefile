@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 10:41:40 by evportel          #+#    #+#              #
-#    Updated: 2023/09/05 18:16:01 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/11 14:04:14 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,9 +45,11 @@ $(NAME):		$(OBJECTS)
 
 clean:
 	@$(RM) $(OBJECTS)
+	@printf "${OBJECTS} removed!${RESET}\n"
 
 fclean:			clean
 	@$(RM) $(NAME)
+	@printf "${NAME} removed!${RESET}\n"
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/10 22:13:08 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/11 14:08:37 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,8 @@ RESET	=	\033[0m
 # FLAGS MANDATORY ************************************************************ #
 NAME		=	pipex
 CC			=	cc
-FLAGS		=	-O3
-# FLAGS		=	-Wall -Wextra -Werror -O3
-FLAGS		=	
+FLAGS		=	-Wall -Wextra -Werror -O3
+# FLAGS		=	
 LIBFT		= -L ./libft -lft
 
 SRC			=	${addprefix mandatory/, main.c} \
@@ -39,15 +38,14 @@ HEADER		=	-I ./include/
 # RULES MANDATORY ************************************************************ #
 all:		${NAME}
 
-${NAME}:	libft ${OBJ}
+
+${NAME}:	mylibft ${OBJ}
 			@printf "${BLUE}All objects created!${RESET}\n"
 			${CC} ${FLAGS} -o ${NAME} ${OBJ} ${LIBFT} ${HEADER}
 			@printf "${GREEN}${NAME} created!${RESET}\n"
-			make clean
 
-libft:
-			make -C ./libft --no-print-directory
-			make clean -C ./libft --no-print-directory
+mylibft:
+			make -C ./libft/ --no-print-directory
 
 %.o: %.c
 			@printf "${YELLOW}Compiling: ${CYAN}${notdir $<}${RESET}\n"
@@ -57,11 +55,13 @@ libft:
 clean:
 			rm -fr ${OBJ}
 #			rm -fr ${OBJ_BONUS}
+			@make clean -C ./libft/ --no-print-directory
 			@printf "${MAGENTA}All objects removed!${RESET}\n"
 
 fclean:		clean
 			rm -fr ${NAME}
 #			rm -fr ${NAME_BONUS}
+			@make fclean -C ./libft/ --no-print-directory
 			@printf "${RED}${NAME} removed!${RESET}\n"
 
 re:			fclean ${NAME}
