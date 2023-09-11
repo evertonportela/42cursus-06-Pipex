@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/08 15:45:05 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/10 20:59:39 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,11 @@ FLAGS		=	-O3
 FLAGS		=	
 LIBFT		= -L ./libft -lft
 
-SRC			=	${addprefix mandatory/, main.c}
+SRC			=	${addprefix mandatory/, main.c} \
+				${addprefix mandatory/, ft_pipex.c} \
+				${addprefix mandatory/, ft_pipex_error.c} \
+				${addprefix mandatory/, ft_open_file.c} \
+				${addprefix mandatory/, ft_exec_command.c}
 
 OBJ			=	${SRC:.c=.o}
 HEADER		=	-I ./include/
@@ -63,6 +67,8 @@ fclean:		clean
 re:			fclean ${NAME}
 
 # TEST RULES ***************************************************************** #
+norm:
+			norminette
 test1:		
 			clear
 			@printf "${CYAN}Test1 ... OK${RESET}\n"

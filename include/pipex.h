@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:26:32 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/09 21:24:50 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/10 20:47:50 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <fcntl.h>
 # include <string.h>
 # include <unistd.h>
+# include <stdio.h>
+# include <sys/wait.h>
 
 /* Funções da estrutura Pipex *********************************************** */
 int		ft_open_file(char *file, int io_flag);
