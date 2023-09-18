@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 21:23:20 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/10 21:52:18 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/10 22:35:48 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,6 @@ static char	**ft_get_path_command(char **env)
  */
 static char	*ft_find_command_path(char *command, char **env)
 {
-<<<<<<< HEAD
-	char **path_command;
-
-	path_command = ft_get_path_command(env);
-	return ();
-=======
 	int		index;
 	char	*command_path;
 
@@ -98,8 +92,8 @@ static char	*ft_find_command_path(char *command, char **env)
 	
 	// Retorna NULL se o comando não for encontrado em nenhum diretório do PATH.
 	return (NULL);
->>>>>>> 07e51af47912c5f9e6c0c27fe0508d8ec84851f2
 }
+
 
 /**
  * Executa um comando especificado no contexto do projeto Pipex.

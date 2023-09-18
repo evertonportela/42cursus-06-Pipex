@@ -36,6 +36,9 @@ int	ft_open_file(char *file, int io_flag)
 		// Verifica se o arquivo existe.
 		if (access(file, F_OK) == -1)
 			ft_pipex_error();
+		// ou se tem permissão de acesso
+		else if (access(file, X_OK) == -1)
+			ft_pipex_error();
 		
 		// Abre o arquivo para leitura apenas.
 		file_descriptor = open(file, O_RDONLY);
@@ -43,6 +46,7 @@ int	ft_open_file(char *file, int io_flag)
 		// Verifica se a abertura do arquivo falhou.
 		if (file_descriptor < 0)
 			ft_pipex_error();
+		
 	}
 	
 	// Abre o arquivo para saída.
