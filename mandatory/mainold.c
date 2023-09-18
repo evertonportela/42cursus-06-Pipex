@@ -48,7 +48,7 @@ int	main(int argc, char **argv, char **env)
 		ft_pipex(argv[2], env);
 		
 		// Executa o segundo comando especificado no contexto do projeto Pipex.
-		ft_pipex(argv[3], env);
+		ft_exec_command(argv[3], env);
 	}
 	// Se o número de argumentos não for igual a 5,
 	// imprime uma mensagem de erro.
