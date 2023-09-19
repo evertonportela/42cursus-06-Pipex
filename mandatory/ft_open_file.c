@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/10 21:59:52 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/18 20:59:13 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	ft_open_file(char *file, int io_flag)
 	if (io_flag == FILE_INPUT)
 	{
 		// Verifica se o arquivo existe.
-		if (access(file, F_OK) == -1)
-			ft_pipex_error();
+		// if (access(file, F_OK) == -1)
+		// 	ft_pipex_error();
 		// ou se tem permissão de acesso
-		else if (access(file, X_OK) == -1)
-			ft_pipex_error();
+		// else if (access(file, X_OK) == -1)
+		// 	ft_pipex_error();
 		
 		// Abre o arquivo para leitura apenas.
 		file_descriptor = open(file, O_RDONLY);

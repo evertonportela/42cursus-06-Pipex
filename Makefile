@@ -6,11 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2023/09/11 14:08:37 by evportel         ###   ########.fr        #
-=======
-#    Updated: 2023/09/10 23:58:35 by evportel         ###   ########.fr        #
->>>>>>> c039539f480dadce4b30b9309499d5b6aded0bb2
+#    Updated: 2023/09/18 20:27:49 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,12 +45,7 @@ ${NAME}:	mylibft ${OBJ}
 			@printf "${GREEN}${NAME} created!${RESET}\n"
 
 mylibft:
-<<<<<<< HEAD
 			make -C ./libft/ --no-print-directory
-=======
-			make -C ./libft/
-			make clean -C ./libft/ --no-print-directory
->>>>>>> c039539f480dadce4b30b9309499d5b6aded0bb2
 
 %.o: %.c
 			@printf "${YELLOW}Compiling: ${CYAN}${notdir $<}${RESET}\n"
