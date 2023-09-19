@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 20:24:57 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/18 20:58:56 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/18 21:29:54 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
  * @param command O comando a ser executado no processo filho.
  * @param env     O ambiente do sistema.
  */
-void ft_pipex(char *command, char **env)
+void    ft_pipex(char *file, char *command, char **env)
 {
+    int	fd_input_file;
+	int	fd_output_file;
     int fd_pipe[2];  // Descritores de arquivo para o pipeline.
     pid_t pid;       // ID do processo.
 
@@ -37,6 +39,13 @@ void ft_pipex(char *command, char **env)
     // Processo filho.
     if (pid == 0)
     {
+        // Abre o arquivo de entrada no modo de leitura.
+		fd_input_file = ft_open_file(file, FILE_INPUT);
+		
+		// Redireciona a entrada padrão (stdin) para o arquivo de entrada.
+		if (dup2(fd_input_file, STDIN_FILENO) == -1)
+			ft_pipex_error();
+        
         // Fecha o descritor de leitura do pipeline.
         close(fd_pipe[STDIN_FILENO]);
 
@@ -52,9 +61,16 @@ void ft_pipex(char *command, char **env)
         // Sai com código de falha se algo der errado.
         exit(EXIT_FAILURE);
     }
-    // Processo pai.
+    // Processo segundo processo filho.
     else
     {
+        // Abre o arquivo de saída no modo de escrita.
+		fd_output_file = ft_open_file(file, FILE_OUTPUT);
+		
+		// Redireciona a saída padrão (stdout) para o arquivo de saída.
+		if (dup2(fd_output_file, STDOUT_FILENO) == -1)
+			ft_pipex_error();
+        
         // Espera pelo término do processo filho.
         waitpid(pid, NULL, 0);
 
