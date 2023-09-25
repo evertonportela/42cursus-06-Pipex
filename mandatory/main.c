@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/18 21:41:52 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/24 21:17:20 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@ int	main(int argc, char **argv, char **env)
 	{
 		// // Abre o arquivo de saída no modo de escrita.
 		// fd_output_file = ft_open_file(argv[4], FILE_OUTPUT);
-		
+ 
 		// // Redireciona a saída padrão (stdout) para o arquivo de saída.
 		// if (dup2(fd_output_file, STDOUT_FILENO) == -1)
 		// 	ft_pipex_error();
-		
+
 		// // Abre o arquivo de entrada no modo de leitura.
 		// fd_input_file = ft_open_file(argv[1], FILE_INPUT);
-		
+
 		// // Redireciona a entrada padrão (stdin) para o arquivo de entrada.
 		// if (dup2(fd_input_file, STDIN_FILENO) == -1)
 		// 	ft_pipex_error();
-		
+
 		// Executa a primeira parte do projeto com o primeiro comando
 		ft_pipex(argv[1], argv[2], env);
-		
+
 		// Executa o segundo comando especificado no contexto do projeto Pipex.
 		ft_pipex(argv[4], argv[3], env);
 	}
