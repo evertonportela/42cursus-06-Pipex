@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:26:32 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/18 21:29:52 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/26 20:47:06 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@
 /* Funções da estrutura Pipex *********************************************** */
 int		ft_open_file(char *file, int io_flag);
 void	ft_pipex_error(void);
-void	ft_pipex(char *file, char *command, char **env);
+//void	ft_pipex(char *file, char *command, char **env);
+void	ft_pipex_one(char *file, char *command, char **env);
+void	ft_pipex_two(char *file, char *command, char **env);
 void	ft_exec_command(char *command, char **env);
 
 #endif
