@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/27 14:15:30 by codespace        ###   ########.fr       */
+/*   Updated: 2023/09/27 23:16:38 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int	main(int argc, char **argv, char **env)
 		if (dup2(fd_output_file, STDOUT_FILENO) == -1)
 		 	ft_pipex_error();
 				
+		
+		close(fd_input_file);
+		close(fd_output_file);
+		
 		// Executa a primeira parte do projeto com o primeiro comando
 		ft_pipex(argv[2], env);
 		
