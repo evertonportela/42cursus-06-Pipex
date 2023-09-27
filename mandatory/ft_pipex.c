@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 20:24:57 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/27 17:40:27 by codespace        ###   ########.fr       */
+/*   Updated: 2023/09/27 23:18:06 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void    ft_pipex(char *command, char **env)
     pid_t   pid;            // ID do processo.
 
     // Cria um pipeline.
-	pipe(fd_pipe);
     if (pipe(fd_pipe) == -1)
         ft_pipex_error();
 
