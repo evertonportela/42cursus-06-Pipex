@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 21:23:20 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/10 22:35:48 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/27 18:02:30 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ static char	**ft_get_path_command(char **env)
 		index++;
 	
 	// Verifica se a variável de ambiente "PATH" não foi encontrada.
-	if (env[index] == 0)
+	if (!env[index])
 		return (NULL);
 	
 	// Divide a string após "PATH=" usando ':' como delimitador
-	env_all_path = ft_split((env[index] + 5), ':');
+	env_temp = env[index] + 5;
+	env_all_path = ft_split(env_temp, ':');
 	index = 0;
 	
 	// Adiciona '/' ao final de cada diretório do PATH
@@ -108,7 +109,6 @@ void	ft_exec_command(char *command, char **env)
 
 	// Divide a string do comando em argumentos individuais.
 	command_args = ft_split(command, ' ');
-	
 	// Encontra o caminho completo para o executável do comando.
 	path_exec = ft_find_command_path(command_args[0], env);
 	
@@ -116,7 +116,8 @@ void	ft_exec_command(char *command, char **env)
 	execve(path_exec, command_args, env);
 	
 	// Se a execução do comando falhar, imprime uma mensagem de erro.
-	ft_printf("Pipex Error: Command not found: ");
+	write(2, "Pipex Error: Command not found: ", 32);
+	write(2, command, ft_strlen(command));
 	
 	// Sai com um código de saída indicando que o comando não foi encontrado.
 	exit(127);
