@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/27 18:33:11 by codespace        ###   ########.fr       */
+/*   Updated: 2023/09/27 20:56:32 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,28 @@
  */
 int	ft_open_file(char *file, int io_flag)
 {
+	int	fd;
 	// Abre o arquivo para entrada.
 	if (io_flag == FILE_INPUT)
 	{
 		// Verifica se o arquivo existe.
-		if (access(file, F_OK | X_OK) != 0)
-			ft_pipex_error();
+		// if (access(file, F_OK | X_OK) != 0)
+		//	ft_pipex_error();
 		// ou se tem permissão de acesso
-		return (open(file, O_RDONLY));
+		fd = open(file, O_RDONLY);
 	}
 	// Abre o arquivo para saída.
 	else
 	{
 		// Retorna o descritor de arquivo após a abertura bem-sucedida.
-		return (open(file, O_RDWR | O_CREAT | O_TRUNC, 0644));
+		fd = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	}
+	//	Verifica se a abertura do arquivo falhou
+	if (fd == -1)
+	{
+		write(2, "Pipex Error: Failed to open file:", 34);
+		write(2, file, ft_strlen(file));
+		exit(EXIT_FAILURE);
+	}
+	return (fd);
 }
