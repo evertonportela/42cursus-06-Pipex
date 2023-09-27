@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:26:32 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/26 20:47:06 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/27 13:24:34 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 /* Inclusões necessárias para o projeto Pipex ******************************* */
 # include <errno.h>
 # include <fcntl.h>
-# include <string.h>
-# include <unistd.h>
 # include <stdio.h>
+# include <string.h>
 # include <sys/wait.h>
+# include <unistd.h>
 
 /* Funções da estrutura Pipex *********************************************** */
 int		ft_open_file(char *file, int io_flag);
