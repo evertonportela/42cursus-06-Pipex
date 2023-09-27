@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/26 20:45:21 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/27 01:07:51 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,23 @@
  */
 int	main(int argc, char **argv, char **env)
 {
-	// int	fd_input_file;
-	// int	fd_output_file;
+	int	fd_input_file;
+	int	fd_output_file;
 
 	// Verifica se o número correto de argumentos de linha de comando
 	// foi fornecido (5).
 	if (argc == 5)
 	{
-		// // Abre o arquivo de saída no modo de escrita.
+		// Abre o arquivo de entrada no modo de leitura.
+		fd_input_file = ft_open_file(argv[1], FILE_INPUT);
+		
+		// Abre o arquivo de saída no modo de escrita.
 		// fd_output_file = ft_open_file(argv[4], FILE_OUTPUT);
 		
 		// // Redireciona a saída padrão (stdout) para o arquivo de saída.
 		// if (dup2(fd_output_file, STDOUT_FILENO) == -1)
 		// 	ft_pipex_error();
 		
-		// // Abre o arquivo de entrada no modo de leitura.
-		// fd_input_file = ft_open_file(argv[1], FILE_INPUT);
 		
 		// // Redireciona a entrada padrão (stdin) para o arquivo de entrada.
 		// if (dup2(fd_input_file, STDIN_FILENO) == -1)

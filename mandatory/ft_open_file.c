@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_open_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/18 20:59:13 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/27 01:10:46 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	ft_open_file(char *file, int io_flag)
 	if (io_flag == FILE_INPUT)
 	{
 		// Verifica se o arquivo existe.
-		// if (access(file, F_OK) == -1)
-		// 	ft_pipex_error();
+		if (access(file, F_OK) != 0)
+			ft_pipex_error();
 		// ou se tem permissão de acesso
-		// else if (access(file, X_OK) == -1)
-		// 	ft_pipex_error();
+		else if (access(file, X_OK) != 0)
+			ft_pipex_error();
 		
 		// Abre o arquivo para leitura apenas.
 		file_descriptor = open(file, O_RDONLY);
@@ -46,7 +46,6 @@ int	ft_open_file(char *file, int io_flag)
 		// Verifica se a abertura do arquivo falhou.
 		if (file_descriptor < 0)
 			ft_pipex_error();
-		
 	}
 	
 	// Abre o arquivo para saída.
