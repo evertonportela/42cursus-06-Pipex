@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pipex_error.c                                   :+:      :+:    :+:   */
+/*   ft_valid_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/09 19:04:19 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/27 13:35:20 by codespace        ###   ########.fr       */
+/*   Created: 2023/09/27 23:52:40 by codespace         #+#    #+#             */
+/*   Updated: 2023/09/28 01:11:31 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-/**
- * Função para lidar com erros no programa Pipex.
- * Imprime uma mensagem de erro padrão no stderr
- * e encerra o programa com código de falha.
- */
-void	ft_pipex_error(void)
+void	ft_valid_args(char **args)
 {
-	// Imprime uma mensagem de erro com a descrição do código de erro
-	write(2, strerror(errno), ft_strlen(strerror(errno)));
-	// Encerra o programa com código de saída indicando falha.
-	exit(EXIT_FAILURE);
+	if (access(args[1], F_OK) == -1)
+	{
+		perror("Erro ao verificar arquivo de entrada");
+		exit(EXIT_FAILURE);
+	}
+	if (access(args[2], X_OK) == -1)
+	{
+		fprintf(stderr, "Erro: O comando 1 não é executável ou não existe.\n");
+		exit(EXIT_FAILURE);
+	}
+	if (access(args[3], X_OK) == -1)
+	{
+		fprintf(stderr, "Erro: O comando 2 não é executável ou não existe.\n");
+		exit(EXIT_FAILURE);
+	}
 }

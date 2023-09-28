@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
+#    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/18 20:27:49 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/28 22:49:31 by codespace        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,16 +21,17 @@ RESET	=	\033[0m
 
 # FLAGS MANDATORY ************************************************************ #
 NAME		=	pipex
-CC			=	cc
-FLAGS		=	-Wall -Wextra -Werror -O3
-# FLAGS		=	
+CC			=	gcc
+FLAGS		=	-Wall -Wextra -Werror
+# FLAGS		=	-Wall -Wextra -Werror -O3
 LIBFT		= -L ./libft -lft
 
 SRC			=	${addprefix mandatory/, main.c} \
 				${addprefix mandatory/, ft_pipex.c} \
 				${addprefix mandatory/, ft_pipex_error.c} \
 				${addprefix mandatory/, ft_open_file.c} \
-				${addprefix mandatory/, ft_exec_command.c}
+				${addprefix mandatory/, ft_exec_command.c}\
+				${addprefix mandatory/, ft_valid_args.c}
 
 OBJ			=	${SRC:.c=.o}
 HEADER		=	-I ./include/
@@ -45,7 +46,7 @@ ${NAME}:	mylibft ${OBJ}
 			@printf "${GREEN}${NAME} created!${RESET}\n"
 
 mylibft:
-			make -C ./libft/ --no-print-directory
+			make -j42 -C ./libft/ --no-print-directory
 
 %.o: %.c
 			@printf "${YELLOW}Compiling: ${CYAN}${notdir $<}${RESET}\n"

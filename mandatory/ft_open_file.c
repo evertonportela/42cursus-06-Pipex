@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_open_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/18 20:59:13 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/28 01:14:38 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,39 +28,25 @@
  */
 int	ft_open_file(char *file, int io_flag)
 {
-	int	file_descriptor;
-
+	int	fd;
 	// Abre o arquivo para entrada.
 	if (io_flag == FILE_INPUT)
 	{
-		// Verifica se o arquivo existe.
-		// if (access(file, F_OK) == -1)
-		// 	ft_pipex_error();
-		// ou se tem permissão de acesso
-		// else if (access(file, X_OK) == -1)
-		// 	ft_pipex_error();
 		
-		// Abre o arquivo para leitura apenas.
-		file_descriptor = open(file, O_RDONLY);
-		
-		// Verifica se a abertura do arquivo falhou.
-		if (file_descriptor < 0)
-			ft_pipex_error();
-		
+		fd = open(file, O_RDONLY);
 	}
-	
 	// Abre o arquivo para saída.
 	else
 	{
-		// Abre o arquivo para leitura e gravação,
-		// cria se não existir e define permissões.
-		file_descriptor = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
-		
-		// Verifica se a abertura do arquivo falhou.
-		if (file_descriptor < 0)
-			ft_pipex_error();
+		// Retorna o descritor de arquivo após a abertura bem-sucedida.
+		fd = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	}
-
-	// Retorna o descritor de arquivo após a abertura bem-sucedida.
-	return (file_descriptor);
+	//	Verifica se a abertura do arquivo falhou
+	if (fd == -1)
+	{
+		write(2, "Pipex Error: Failed to open file:", 34);
+		write(2, file, ft_strlen(file));
+		exit(EXIT_FAILURE);
+	}
+	return (fd);
 }

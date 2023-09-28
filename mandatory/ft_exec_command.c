@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 21:23:20 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/10 22:35:48 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/28 22:56:58 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
+
+static void	*ft_free_pointers(char **strings)
+{
+	int	index;
+
+	index = 0;
+	while (strings[index] != NULL)
+	{
+		free(strings[index]);
+		index++;
+	}
+	free(strings);
+	return (NULL);
+}
 
 /**
  * Obtém e manipula as variáveis de ambiente relacionadas ao PATH.
@@ -35,11 +49,12 @@ static char	**ft_get_path_command(char **env)
 		index++;
 	
 	// Verifica se a variável de ambiente "PATH" não foi encontrada.
-	if (env[index] == 0)
+	if (!env[index])
 		return (NULL);
 	
 	// Divide a string após "PATH=" usando ':' como delimitador
-	env_all_path = ft_split((env[index] + 5), ':');
+	env_temp = env[index] + 5;
+	env_all_path = ft_split(env_temp, ':');
 	index = 0;
 	
 	// Adiciona '/' ao final de cada diretório do PATH
@@ -83,13 +98,17 @@ static char	*ft_find_command_path(char *command, char **env)
 		
 		// Verifica se o comando existe e é executável no caminho atual.
 		if (access(command_path, F_OK | X_OK) == 0)
+		{
+			ft_free_pointers(env);
 			return (command_path);
+		}
 		
 		// Libera a memória alocada para o caminho.
 		free(command_path);
 		index++;
 	}
 	
+	ft_free_pointers(env);
 	// Retorna NULL se o comando não for encontrado em nenhum diretório do PATH.
 	return (NULL);
 }
@@ -108,15 +127,24 @@ void	ft_exec_command(char *command, char **env)
 
 	// Divide a string do comando em argumentos individuais.
 	command_args = ft_split(command, ' ');
-	
 	// Encontra o caminho completo para o executável do comando.
 	path_exec = ft_find_command_path(command_args[0], env);
+
+	if (path_exec == NULL)
+	{
+		free(path_exec);
+		ft_free_pointers(command_args);
+		ft_pipex_error();
+	}
 	
 	// Executa o comando no contexto do processo atual.
 	execve(path_exec, command_args, env);
 	
 	// Se a execução do comando falhar, imprime uma mensagem de erro.
-	ft_printf("Pipex Error: Command not found: ");
+	ft_pipex_error();
+	
+	//write(2, "Pipex Error: Command not found: ", 32);
+	//write(2, command, ft_strlen(command));
 	
 	// Sai com um código de saída indicando que o comando não foi encontrado.
 	exit(127);
