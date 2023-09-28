@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/27 20:56:32 by codespace        ###   ########.fr       */
+/*   Updated: 2023/09/28 01:14:38 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ int	ft_open_file(char *file, int io_flag)
 	// Abre o arquivo para entrada.
 	if (io_flag == FILE_INPUT)
 	{
-		// Verifica se o arquivo existe.
-		// if (access(file, F_OK | X_OK) != 0)
-		//	ft_pipex_error();
-		// ou se tem permissão de acesso
+		
 		fd = open(file, O_RDONLY);
 	}
 	// Abre o arquivo para saída.

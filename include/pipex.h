@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:26:32 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/27 14:23:42 by codespace        ###   ########.fr       */
+/*   Updated: 2023/09/27 23:55:19 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int		ft_open_file(char *file, int io_flag);
 void	ft_pipex_error(void);
 void	ft_pipex(char *command, char **env);
 void	ft_exec_command(char *command, char **env);
+void	ft_valid_args(char **args);
 
 #endif
