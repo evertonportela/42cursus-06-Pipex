@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 21:23:20 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/28 01:03:34 by codespace        ###   ########.fr       */
+/*   Updated: 2023/09/28 21:01:29 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,9 @@ void	ft_exec_command(char *command, char **env)
 	execve(path_exec, command_args, env);
 	
 	// Se a execução do comando falhar, imprime uma mensagem de erro.
-	write(2, "Pipex Error: Command not found: ", 32);
-	write(2, command, ft_strlen(command));
+	ft_pipex_error();
+	//write(2, "Pipex Error: Command not found: ", 32);
+	//write(2, command, ft_strlen(command));
 	
 	// Sai com um código de saída indicando que o comando não foi encontrado.
 	exit(127);
