@@ -6,7 +6,7 @@
 #    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/27 23:54:51 by codespace        ###   ########.fr        #
+#    Updated: 2023/09/28 22:49:31 by codespace        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ ${NAME}:	mylibft ${OBJ}
 			@printf "${GREEN}${NAME} created!${RESET}\n"
 
 mylibft:
-			make -C ./libft/ --no-print-directory
+			make -j42 -C ./libft/ --no-print-directory
 
 %.o: %.c
 			@printf "${YELLOW}Compiling: ${CYAN}${notdir $<}${RESET}\n"
