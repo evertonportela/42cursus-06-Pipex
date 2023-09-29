@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/28 21:31:57 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/29 20:22:34 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ ${NAME}:	mylibft ${OBJ}
 			@printf "${GREEN}${NAME} created!${RESET}\n"
 
 mylibft:
-			make -C ./libft/ --no-print-directory
+			make -j42 -C ./libft/ --no-print-directory
 
 %.o: %.c
 			@printf "${YELLOW}Compiling: ${CYAN}${notdir $<}${RESET}\n"
@@ -79,5 +79,8 @@ test3:
 			clear
 			@printf "\n${CYAN}Test3 ... OK${RESET}\n"
 			./pipex input "sort" brheueheue output
+
+valgrind:	
+			valgrind -s --leak-check=yes --track-fds=yes ./pipex input ls cat output
 
 .PHONY: all bonus clean fclean re
