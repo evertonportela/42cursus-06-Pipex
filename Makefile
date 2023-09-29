@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
+#    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/28 22:49:31 by codespace        ###   ########.fr        #
+#    Updated: 2023/09/28 21:37:34 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,17 +21,15 @@ RESET	=	\033[0m
 
 # FLAGS MANDATORY ************************************************************ #
 NAME		=	pipex
-CC			=	gcc
+CC			=	cc
 FLAGS		=	-Wall -Wextra -Werror
-# FLAGS		=	-Wall -Wextra -Werror -O3
-LIBFT		= -L ./libft -lft
+LIBFT		=	-L ./libft -lft
 
 SRC			=	${addprefix mandatory/, main.c} \
 				${addprefix mandatory/, ft_pipex.c} \
 				${addprefix mandatory/, ft_pipex_error.c} \
 				${addprefix mandatory/, ft_open_file.c} \
-				${addprefix mandatory/, ft_exec_command.c}\
-				${addprefix mandatory/, ft_valid_args.c}
+				${addprefix mandatory/, ft_exec_command.c}
 
 OBJ			=	${SRC:.c=.o}
 HEADER		=	-I ./include/
