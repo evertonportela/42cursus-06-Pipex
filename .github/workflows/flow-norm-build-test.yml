@@ -86,4 +86,4 @@ jobs:
           git clone https://github.com/vfurmane/pipex-tester
           cd pipex-tester
           export TERM=xterm-256color
-          run.sh
+          ./run.sh
