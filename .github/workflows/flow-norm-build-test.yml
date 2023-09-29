@@ -67,7 +67,7 @@ jobs:
           make
 
   Tester_Valentin_Furmanek:
-    name: Tester Denis Godoy
+    name: Tester Valentin Furmanek
     needs: build
     runs-on: ubuntu-20.04
     defaults:
@@ -87,3 +87,4 @@ jobs:
           cd pipex-tester
           export TERM=xterm-256color
           ./run.sh
+          y
