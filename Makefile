@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/11 14:08:37 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/28 21:31:57 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,8 @@ RESET	=	\033[0m
 # FLAGS MANDATORY ************************************************************ #
 NAME		=	pipex
 CC			=	cc
-FLAGS		=	-Wall -Wextra -Werror -O3
-# FLAGS		=	
-LIBFT		= -L ./libft -lft
+FLAGS		=	-Wall -Wextra -Werror
+LIBFT		=	-L ./libft -lft
 
 SRC			=	${addprefix mandatory/, main.c} \
 				${addprefix mandatory/, ft_pipex.c} \
@@ -37,7 +36,6 @@ HEADER		=	-I ./include/
 
 # RULES MANDATORY ************************************************************ #
 all:		${NAME}
-
 
 ${NAME}:	mylibft ${OBJ}
 			@printf "${BLUE}All objects created!${RESET}\n"
@@ -54,13 +52,11 @@ mylibft:
 # CLEANING RULES ************************************************************* #
 clean:
 			rm -fr ${OBJ}
-#			rm -fr ${OBJ_BONUS}
 			@make clean -C ./libft/ --no-print-directory
 			@printf "${MAGENTA}All objects removed!${RESET}\n"
 
 fclean:		clean
 			rm -fr ${NAME}
-#			rm -fr ${NAME_BONUS}
 			@make fclean -C ./libft/ --no-print-directory
 			@printf "${RED}${NAME} removed!${RESET}\n"
 
@@ -81,7 +77,7 @@ test2:
 
 test3:		
 			clear
-			@printf "\n${CYAN}Test2 ... OK${RESET}\n"
-			./pipex input "sort" output
+			@printf "\n${CYAN}Test3 ... OK${RESET}\n"
+			./pipex input "sort" brheueheue output
 
 .PHONY: all bonus clean fclean re
