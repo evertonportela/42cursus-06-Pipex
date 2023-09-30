@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/28 21:37:34 by evportel         ###   ########.fr        #
+#    Updated: 2023/09/30 14:10:32 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ ${NAME}:	mylibft ${OBJ}
 			@printf "${GREEN}${NAME} created!${RESET}\n"
 
 mylibft:
-			make -j42 -C ./libft/ --no-print-directory
+			make -j4 -C ./libft/ --no-print-directory
 
 %.o: %.c
 			@printf "${YELLOW}Compiling: ${CYAN}${notdir $<}${RESET}\n"
