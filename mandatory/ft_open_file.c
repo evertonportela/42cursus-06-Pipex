@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_open_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/28 01:14:38 by codespace        ###   ########.fr       */
+/*   Updated: 2023/09/30 14:58:31 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_open_file(char *file, int io_flag)
 	//	Verifica se a abertura do arquivo falhou
 	if (fd == -1)
 	{
-		write(2, "Pipex Error: Failed to open file:", 34);
+		write(2, "Pipex Error: Failed to open file: ", 35);
 		write(2, file, ft_strlen(file));
 		exit(EXIT_FAILURE);
 	}
