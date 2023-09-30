@@ -81,7 +81,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install valgrind -y
 
-      - name: Cloning Tester Denis Godoy
+      - name: Cloning Valentin Furmanek
         run: |
           git clone https://github.com/evertonportela/pipex-tester
           cd pipex-tester
