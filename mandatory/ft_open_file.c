@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/30 14:58:31 by evportel         ###   ########.fr       */
+/*   Updated: 2023/09/30 21:21:31 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ int	ft_open_file(char *file, int io_flag)
 	//	Verifica se a abertura do arquivo falhou
 	if (fd == -1)
 	{
-		write(2, "Pipex Error: Failed to open file: ", 35);
+		write(2, "PipexError: no such file or directory: ", 39);
 		write(2, file, ft_strlen(file));
-		exit(EXIT_FAILURE);
+		write(2, "\n", 1);
+		exit (EXIT_FAILURE);
 	}
 	return (fd);
 }
