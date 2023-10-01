@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 20:24:57 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/30 21:28:44 by evportel         ###   ########.fr       */
+/*   Updated: 2023/10/01 13:33:43 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void    ft_pipex(char *command, char **env)
 
     // Cria um pipeline.
     if (pipe(fd_pipe) == -1)
-        ft_pipex_error();
+        ft_pipex_error(-1);
 
     // Cria um processo filho.
     pid = fork();
 
     // Verifica se a criação do processo filho falhou.
     if (pid < 0)
-        ft_pipex_error();
+        ft_pipex_error(-1);
     
     // Processo filho numero 1.
     if (pid == 0)
