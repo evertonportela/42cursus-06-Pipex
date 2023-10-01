@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:26:32 by evportel          #+#    #+#             */
-/*   Updated: 2023/10/01 14:42:45 by evportel         ###   ########.fr       */
+/*   Updated: 2023/10/01 16:33:38 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 /* Funções do Projeto Pipex ************************************************* */
 int		ft_open_file(char *file, int io_flag);
 void	ft_pipex_error(int cod_exit, char *str);
-void	ft_pipex(char *command, char **env);
-void	ft_exec_command(char *command, char **env);
+int		ft_pipex(char *command, char **env);
+int		ft_exec_command(char *command, char **env);
 
 #endif

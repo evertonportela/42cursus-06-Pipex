@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/10/01 14:03:27 by evportel         ###   ########.fr       */
+/*   Updated: 2023/10/01 17:41:32 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,32 @@ int	main(int argc, char **argv, char **env)
 
 		// Redireciona a entrada padrão (stdin) para o arquivo de entrada.
 		if (dup2(fd_input_file, STDIN_FILENO) == -1)
-			ft_pipex_error(-1);
+			ft_pipex_error(1, "fd_input");
 		close(fd_input_file);
 
 		// Redireciona a saída padrão (stdout) para o arquivo de saída.
 		if (dup2(fd_output_file, STDOUT_FILENO) == -1)
-		 	ft_pipex_error(-1);
+		 	ft_pipex_error(1, "fd_output");
 		close(fd_output_file);
 		
 		// Executa a primeira parte do projeto com o primeiro comando
-		ft_pipex(argv[2], env);
+		if (ft_pipex(argv[2], env) == EXIT_FAILURE)
+		{
+			ft_pipex_error(127, argv[2]);
+		}
 		
 		// Executa o segundo comando especificado no contexto do projeto Pipex.
-		ft_exec_command(argv[3], env);
+		if (ft_exec_command(argv[3], env) == EXIT_FAILURE)
+		{
+			ft_pipex_error(127, argv[3]);
+		}
 	}
 	// Se o número de argumentos não for igual a 5,
 	// imprime uma mensagem de erro, do código EINVAL 22 - Invalid argument .
 	else
 	{
 		write(2, "Use: ./pipex file_input command1 command2 file_output\n", 54);
-		ft_pipex_error(22);
+		ft_pipex_error(22, "");
 	}
 	
 	// Retorna EXIT_SUCCESS (0) para indicar sucesso.

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 21:23:20 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/28 22:56:58 by codespace        ###   ########.fr       */
+/*   Updated: 2023/10/01 17:36:03 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,13 +120,15 @@ static char	*ft_find_command_path(char *command, char **env)
  * @param command	O comando a ser executado como uma string.
  * @param env		O array de strings contendo as variáveis de ambiente.
  */
-void	ft_exec_command(char *command, char **env)
+int	ft_exec_command(char *command, char **env)
 {
 	char	**command_args;
 	char	*path_exec;
 
 	// Divide a string do comando em argumentos individuais.
 	command_args = ft_split(command, ' ');
+	if (command_args == NULL)
+		return (EXIT_FAILURE);	
 	// Encontra o caminho completo para o executável do comando.
 	path_exec = ft_find_command_path(command_args[0], env);
 
@@ -134,17 +136,14 @@ void	ft_exec_command(char *command, char **env)
 	{
 		free(path_exec);
 		ft_free_pointers(command_args);
-		ft_pipex_error();
+		return (EXIT_FAILURE);
 	}
 	
 	// Executa o comando no contexto do processo atual.
 	execve(path_exec, command_args, env);
 	
 	// Se a execução do comando falhar, imprime uma mensagem de erro.
-	ft_pipex_error();
-	
-	//write(2, "Pipex Error: Command not found: ", 32);
-	//write(2, command, ft_strlen(command));
+	ft_pipex_error(1, "146 exec command não executou");
 	
 	// Sai com um código de saída indicando que o comando não foi encontrado.
 	exit(127);
