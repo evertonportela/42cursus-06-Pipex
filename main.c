@@ -1,76 +1,100 @@
-static int	count_words(const char *str, char cut)
-{
-	size_t	words;
+#include <stdlib.h>
+#include <stdio.h>
 
-	words = 0;
-	if (*str == '\0')
-		return (words);
-	if (cut == '\0')
-		return (1);
-	while (*str == cut && *str)
-		str++;
-	while (*str)
-	{
-		words++;
-		while (*str != cut && *str)
-			str++;
-		while (*str == cut && *str)
-			str++;
-	}
-	return (words);
+static int    count_words(char const *s, char c)
+{
+    int    count;
+    int    in_quotes;
+
+    count = 0;
+    in_quotes = 0;
+    while (*s)
+    {
+        if (*s == c && !in_quotes)
+            count++;
+        else if (*s == '\'')
+            in_quotes = !in_quotes;
+        s++;
+    }
+    if (!in_quotes && *s == '\0')
+        count++;
+    return (count);
 }
 
-void	*go_back(char **slices)
+static char    *copy_word(char const *s, char c)
 {
-	while (*slices)
-		free(*slices);
-	free(slices);
-	return (NULL);
+    char    *word;
+    int        len;
+    int        in_quotes;
+
+    len = 0;
+    in_quotes = 0;
+    while (s[len] && (s[len] != c || in_quotes))
+    {
+        if (s[len] == '\'')
+            in_quotes = !in_quotes;
+        len++;
+    }
+    word = (char *)malloc(sizeof(char) * (len + 1));
+    if (!word)
+        return (NULL);
+    len = 0;
+    in_quotes = 0;
+    while (s[len] && (s[len] != c || in_quotes))
+    {
+        if (s[len] == '\'')
+            in_quotes = !in_quotes;
+        word[len] = s[len];
+        len++;
+    }
+    word[len] = '\0';
+    return (word);
 }
 
-char	**constructor_word(char **slices, const char *str, char cut)
+char    **ft_split(char const *s, char c)
 {
-	size_t	len_word;
-	size_t	index;
+    char    **result;
+    int        word_count;
+    int        i;
 
-	index = 0;
-	while (*str)
-	{
-		len_word = 0;
-		while (str[len_word] != cut && str[len_word])
-			len_word++;
-		slices[index] = (char *) malloc(len_word * sizeof(char) + 1);
-		if (slices[index] == NULL)
-			return (go_back(slices));
-		slices[index][len_word] = '\0';
-		while (len_word > 0)
-		{
-			slices[index][len_word - 1] = str[len_word - 1];
-			len_word--;
-		}
-		while (*str != cut && *str)
-			str++;
-		while (*str == cut && *str)
-			str++;
-		index++;
-	}
-	return (slices);
+    if (!s)
+        return (NULL);
+    word_count = count_words(s, c);
+    result = (char **)malloc(sizeof(char *) * (word_count + 1));
+    if (!result)
+        return (NULL);
+    i = 0;
+    while (*s)
+    {
+        if (*s != c)
+        {
+            result[i++] = copy_word(s, c);
+            while (*s && (*s != c || (*(s - 1) == '\'' && *(s + 1) == '\'')))
+                s++;
+        }
+        else
+            s++;
+    }
+    result[i] = NULL;
+    return (result);
 }
 
-char	**ft_split(char const *s, char c)
+int main (void)
 {
-	size_t	words;
-	char	**array;
-
-	if (!s)
-		return (NULL);
-	words = count_words(s, c);
-	array = (char **) malloc((words + 1) * sizeof(char *));
-	if (array == NULL)
-		return (NULL);
-	while (*s == c && *s)
-		s++;
-	array = constructor_word(array, s, c);
-	array[words] = NULL;
-	return (array);
+  char **string = ft_split("tr ' ' p1 p2", ' ');
+  printf("%s \n", string[0]);
+  printf("%s \n", string[1]);
+  printf("%s \n", string[2]);
+  printf("%s \n", string[3]);
+  printf("%s \n", string[4]);
 }
+
+// int main (void)
+// {
+//   char **string = ft_split("tr ex ' X'", ' ');
+// }
+
+// int main (void)
+// {
+//   char **string = ft_split("tr ' ' p", ' ');
+// }
