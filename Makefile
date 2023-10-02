@@ -6,7 +6,7 @@
 #    By: evportel <evportel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:04:31 by evportel          #+#    #+#              #
-#    Updated: 2023/09/29 20:58:34 by evportel         ###   ########.fr        #
+#    Updated: 2023/10/02 19:48:33 by evportel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ HEADER		=	-I ./include/
 # RULES MANDATORY ************************************************************ #
 all:		${NAME}
 
-${NAME}:	mylibft ${OBJ}
+${NAME}:	${OBJ} | mylibft
 			@printf "${BLUE}All objects created!${RESET}\n"
 			${CC} ${FLAGS} -o ${NAME} ${OBJ} ${LIBFT} ${HEADER}
 			@printf "${GREEN}${NAME} created!${RESET}\n"
