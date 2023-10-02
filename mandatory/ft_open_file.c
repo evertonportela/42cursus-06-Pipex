@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/30 15:41:04 by evportel         ###   ########.fr       */
+/*   Updated: 2023/10/02 03:11:09 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,22 @@ int	ft_open_file(char *file, int io_flag)
 	int	fd;
 
 	if (io_flag == FILE_INPUT)
-		fd = open(file, O_RDONLY);
-	else
-		fd = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
-	if (fd == -1)
 	{
-		write(2, "Pipex Error: Failed to open file: ", 35);
-		write(2, file, ft_strlen(file));
-		exit(EXIT_FAILURE);
+		if (access(file, F_OK) == -1)
+			ft_pipex_error(2, file);
+		else if (access(file, R_OK) == -1)
+			ft_pipex_error(13, file);
+		fd = open(file, O_RDONLY);
+		if (fd == -1)
+			ft_pipex_error(2, file);
+	}
+	if (io_flag == FILE_OUTPUT)
+	{
+		fd = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
+		if (fd == -1)
+		{
+			ft_pipex_error(13, file);
+		}
 	}
 	return (fd);
 }

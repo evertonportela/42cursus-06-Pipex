@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 21:23:20 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/28 22:32:24 by evportel         ###   ########.fr       */
+/*   Updated: 2023/10/02 03:12:50 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,20 +72,22 @@ static char	*ft_find_command_path(char *command, char **env)
 	return (NULL);
 }
 
-void	ft_exec_command(char *command, char **env)
+int	ft_exec_command(char *command, char **env)
 {
 	char	**command_args;
 	char	*path_exec;
 
 	command_args = ft_split(command, ' ');
+	if (command_args == NULL)
+		return (EXIT_FAILURE);
 	path_exec = ft_find_command_path(command_args[0], env);
 	if (path_exec == NULL)
 	{
 		free(path_exec);
 		ft_free_pointers(command_args);
-		ft_pipex_error();
+		return (EXIT_FAILURE);
 	}
 	execve(path_exec, command_args, env);
-	ft_pipex_error();
+	ft_pipex_error(1, "146 exec command não executou");
 	exit(127);
 }

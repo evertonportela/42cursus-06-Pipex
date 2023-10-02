@@ -6,14 +6,27 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 19:04:19 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/28 22:27:07 by evportel         ###   ########.fr       */
+/*   Updated: 2023/10/02 03:10:05 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void	ft_pipex_error(void)
+void	ft_pipex_error(int cod_exit, char *str)
 {
-	write(2, strerror(errno), ft_strlen(strerror(errno)));
-	exit(EXIT_FAILURE);
+	write(2, "PipexError: ", 12);
+	if (cod_exit == 127)
+		write(2, "command not found", 18);
+	else
+		write(2, strerror(cod_exit), ft_strlen(strerror(cod_exit)));
+	if (str[0] != 0)
+	{
+		write(2, ": ", 2);
+		write(2, &str[0], ft_strlen(&str[0]));
+	}
+	write(2, "\n", 1);
+	if (cod_exit == 0)
+		exit(cod_exit);
+	else
+		exit(EXIT_FAILURE);
 }

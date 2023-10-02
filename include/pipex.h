@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:26:32 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/28 21:25:02 by evportel         ###   ########.fr       */
+/*   Updated: 2023/10/02 03:06:43 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include "../libft/libft.h"
 
 /* Inclusões necessárias para o projeto Pipex ******************************* */
-# include <errno.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <string.h>
@@ -30,8 +29,8 @@
 
 /* Funções do Projeto Pipex ************************************************* */
 int		ft_open_file(char *file, int io_flag);
-void	ft_pipex_error(void);
-void	ft_pipex(char *command, char **env);
-void	ft_exec_command(char *command, char **env);
+void	ft_pipex_error(int cod_exit, char *str);
+int		ft_pipex(char *command, char **env);
+int		ft_exec_command(char *command, char **env);
 
 #endif
