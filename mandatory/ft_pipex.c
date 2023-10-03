@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 20:24:57 by evportel          #+#    #+#             */
-/*   Updated: 2023/10/01 17:26:12 by evportel         ###   ########.fr       */
+/*   Updated: 2023/10/03 20:40:11 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int    ft_pipex(char *command, char **env)
 
     // Cria um pipeline.
     if (pipe(fd_pipe) == -1)
-        ft_pipex_error(1, "erro create fd pipe");
+        ft_pipex_error(1, "error create fd pipe");
 
     // Cria um processo filho.
     pid = fork();
@@ -49,9 +49,7 @@ int    ft_pipex(char *command, char **env)
 		
         // Executa o comando especificado.
         if (ft_exec_command(command, env) == EXIT_FAILURE)
-        {
             return (EXIT_FAILURE);
-        }
 
         // Sai com código de falha se algo der errado.
         exit(EXIT_FAILURE);

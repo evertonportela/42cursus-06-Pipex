@@ -6,24 +6,34 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 21:23:20 by evportel          #+#    #+#             */
-/*   Updated: 2023/10/01 17:36:03 by evportel         ###   ########.fr       */
+/*   Updated: 2023/10/03 20:48:31 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-static void	*ft_free_pointers(char **strings)
+/**
+ * Libera a memória alocada para um array de strings e seus elementos.
+ *
+ * @param strings   O array de strings a ser liberado.
+ *
+ * @return          NULL, após a liberação da memória.
+ */
+static void *ft_free_pointers(char **strings)
 {
-	int	index;
+    int index = 0;
 
-	index = 0;
-	while (strings[index] != NULL)
-	{
-		free(strings[index]);
-		index++;
-	}
-	free(strings);
-	return (NULL);
+    // Itera através do array de strings e libera cada string individualmente
+    while (strings[index] != NULL)
+    {
+        free(strings[index]);
+        index++;
+    }
+
+    // Libera a memória alocada para o array de ponteiros de strings
+    free(strings);
+
+    return NULL;
 }
 
 /**
@@ -141,10 +151,7 @@ int	ft_exec_command(char *command, char **env)
 	
 	// Executa o comando no contexto do processo atual.
 	execve(path_exec, command_args, env);
-	
-	// Se a execução do comando falhar, imprime uma mensagem de erro.
-	ft_pipex_error(1, "146 exec command não executou");
-	
+		
 	// Sai com um código de saída indicando que o comando não foi encontrado.
 	exit(127);
 }

@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/10/01 17:41:32 by evportel         ###   ########.fr       */
+/*   Updated: 2023/10/03 20:39:19 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,11 @@ int	main(int argc, char **argv, char **env)
 		
 		// Executa a primeira parte do projeto com o primeiro comando
 		if (ft_pipex(argv[2], env) == EXIT_FAILURE)
-		{
 			ft_pipex_error(127, argv[2]);
-		}
-		
+
 		// Executa o segundo comando especificado no contexto do projeto Pipex.
 		if (ft_exec_command(argv[3], env) == EXIT_FAILURE)
-		{
 			ft_pipex_error(127, argv[3]);
-		}
 	}
 	// Se o número de argumentos não for igual a 5,
 	// imprime uma mensagem de erro, do código EINVAL 22 - Invalid argument .
