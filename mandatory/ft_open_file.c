@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_open_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/27 18:33:11 by codespace        ###   ########.fr       */
+/*   Updated: 2023/10/03 21:11:07 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,39 @@
  */
 int	ft_open_file(char *file, int io_flag)
 {
+	int	fd;
 	// Abre o arquivo para entrada.
 	if (io_flag == FILE_INPUT)
 	{
-		// Verifica se o arquivo existe.
-		if (access(file, F_OK | X_OK) != 0)
-			ft_pipex_error();
-		// ou se tem permissão de acesso
-		return (open(file, O_RDONLY));
+		if (access(file, F_OK) == -1)
+		{
+			// o código de erro 2 para ENOENT 'no such file or directory'
+			ft_pipex_error(2, file);
+		}
+		else if (access(file, R_OK) == -1)
+		{
+			// o código de erro 0 para EXIT_SUCCESS 'indica sucesso'
+			// é o que o bash considera, apesar de de falhar.
+			ft_pipex_error(13, file);
+		}
+		fd = open(file, O_RDONLY);
+		if (fd == -1)
+		{
+			// o código de erro 2 para ENOENT 'no such file or directory'
+			ft_pipex_error(2, file);
+		}
 	}
 	// Abre o arquivo para saída.
-	else
+	if (io_flag == FILE_OUTPUT)
 	{
 		// Retorna o descritor de arquivo após a abertura bem-sucedida.
-		return (open(file, O_RDWR | O_CREAT | O_TRUNC, 0644));
+		fd = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
+		//	Verifica se a abertura do arquivo falhou
+		if (fd == -1)
+		{
+			// apesar do erro sero código de erro 13 para EACCES 'Permission denied'
+			ft_pipex_error(13, file);	
+		}
 	}
+	return (fd);
 }

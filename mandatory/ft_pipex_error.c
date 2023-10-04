@@ -3,24 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 19:04:19 by evportel          #+#    #+#             */
-/*   Updated: 2023/09/27 13:35:20 by codespace        ###   ########.fr       */
+/*   Updated: 2023/10/03 21:10:49 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
 /**
- * Função para lidar com erros no programa Pipex.
- * Imprime uma mensagem de erro padrão no stderr
- * e encerra o programa com código de falha.
+ * Função que lida com erros do programa pipex.
+ *
+ * Esta função exibe mensagens de erro no stderr e encerra o programa com um 
+ * código de saída apropriado.
+ *
+ * @param cod_exit O código de erro a ser exibido (geralmente um valor retornado
+ * por outra função).
+ * @param str Uma string de descrição opcional para o erro.
+ *
+ * @return A função não retorna um valor, mas termina o programa com um código
+ * de saída apropriado.
  */
-void	ft_pipex_error(void)
+void	ft_pipex_error(int cod_exit, char *str)
 {
-	// Imprime uma mensagem de erro com a descrição do código de erro
-	write(2, strerror(errno), ft_strlen(strerror(errno)));
+	// Imprime uma mensagem de erro com um prefixo "Pipex Error"
+	perror("Pipex Error");
 	// Encerra o programa com código de saída indicando falha.
 	exit(EXIT_FAILURE);
 }
