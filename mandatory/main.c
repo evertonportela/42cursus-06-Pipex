@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:43:24 by evportel          #+#    #+#             */
-/*   Updated: 2023/10/03 20:39:19 by evportel         ###   ########.fr       */
+/*   Updated: 2023/10/03 21:08:13 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ int	main(int argc, char **argv, char **env)
 		 	ft_pipex_error(1, "fd_output");
 		close(fd_output_file);
 		
+		// Redireciona a saída padrão (stdout) para o arquivo de saída.
+		if (dup2(fd_output_file, STDOUT_FILENO) == -1)
+		 	ft_pipex_error();
+				
 		// Executa a primeira parte do projeto com o primeiro comando
 		if (ft_pipex(argv[2], env) == EXIT_FAILURE)
 			ft_pipex_error(127, argv[2]);

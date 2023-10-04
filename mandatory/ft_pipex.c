@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 20:24:57 by evportel          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/10/03 20:40:11 by evportel         ###   ########.fr       */
+=======
+/*   Updated: 2023/09/27 17:40:27 by codespace        ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +28,7 @@ int    ft_pipex(char *command, char **env)
     pid_t   pid;            // ID do processo.
 
     // Cria um pipeline.
+	pipe(fd_pipe);
     if (pipe(fd_pipe) == -1)
         ft_pipex_error(1, "error create fd pipe");
 

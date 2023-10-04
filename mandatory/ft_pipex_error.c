@@ -6,7 +6,7 @@
 /*   By: evportel <evportel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 19:04:19 by evportel          #+#    #+#             */
-/*   Updated: 2023/10/03 20:40:31 by evportel         ###   ########.fr       */
+/*   Updated: 2023/10/03 21:10:49 by evportel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,8 @@
  */
 void	ft_pipex_error(int cod_exit, char *str)
 {
-	// Exibe "PipexError: " no stderr.
-	write(2, "PipexError: ", 12);
-	
-	// Exibe a mensagem de erro correspondente ao código de saída.
-	if (cod_exit == 127)
-		write(2, "command not found", 18);
-	else
-		write(2, strerror(cod_exit), ft_strlen(strerror(cod_exit)));
-	
-	// Exibe a descrição adicional do erro, se fornecida.
-	if (str[0] != 0)
-	{
-		write(2, ": ", 2);
-		write(2, &str[0], ft_strlen(&str[0]));
-	}
-
-	// Exibe uma quebra de linha no stderr.
-	write(2, "\n", 1);
-
-    // Encerra o programa com um código de saída apropriado,
-	// dependendo do código de erro.
-	if (cod_exit == 0)
-		exit(cod_exit);
-	else
-		exit(EXIT_FAILURE);
+	// Imprime uma mensagem de erro com um prefixo "Pipex Error"
+	perror("Pipex Error");
+	// Encerra o programa com código de saída indicando falha.
+	exit(EXIT_FAILURE);
 }
